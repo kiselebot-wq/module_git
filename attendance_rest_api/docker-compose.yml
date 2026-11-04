@@ -1,0 +1,7 @@
+services:
+  attendance-api:
+    build: .
+    container_name: attendance-rest-api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
