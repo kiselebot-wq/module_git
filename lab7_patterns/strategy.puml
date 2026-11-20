@@ -1,0 +1,29 @@
+@startuml
+title Strategy: расчёт платы за перевозку (образец)
+
+interface TariffStrategy {
+  +cost(massTons, distanceKm) : double
+  +title() : String
+}
+
+class TariffCalculator {
+  +calculate(tariffStrategy, massTons, distanceKm) : double
+}
+
+class WagonTariff
+class ContainerTariff
+class BlockTrainTariff
+
+class "Анонимный класс\n(рефрижераторная отправка)" as RefrigeratedTariff
+
+TariffCalculator o--> TariffStrategy : использует
+TariffStrategy <|.. WagonTariff
+TariffStrategy <|.. ContainerTariff
+TariffStrategy <|.. BlockTrainTariff
+TariffStrategy <|.. RefrigeratedTariff
+
+note right of RefrigeratedTariff
+  Добавлен в main без правки
+  TariffCalculator и других стратегий
+end note
+@enduml

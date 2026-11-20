@@ -1,0 +1,58 @@
+@startuml
+title Factory Method: дефекты рельсов (вариант 11, путевое хозяйство)
+
+abstract class "RailDefect" as RailDefect {
+  #kmMark : double
+  #lengthMm : int
+  +{abstract} code() : String
+  +{abstract} title() : String
+  +{abstract} severityLevel() : int
+  +{abstract} speedLimitKmH() : int
+  +description() : String
+  +kmMark() : double
+  +lengthMm() : int
+}
+
+abstract class "RailDefectFactory" as RailDefectFactory {
+  +{abstract} createDefect(kmMark, lengthMm) : RailDefect
+}
+
+class HeadCrackDefect
+class WebCrackDefect
+class FootCorrosionDefect
+class GaugeWideningDefect
+
+class HeadCrackFactory
+class WebCrackFactory
+class FootCorrosionFactory
+class GaugeWideningFactory
+
+class FactoryAfter {
+  +main(args) : void
+  -check(checkName, passed) : void
+  -finishChecks() : void
+}
+
+RailDefect <|-- HeadCrackDefect
+RailDefect <|-- WebCrackDefect
+RailDefect <|-- FootCorrosionDefect
+RailDefect <|-- GaugeWideningDefect
+
+RailDefectFactory <|-- HeadCrackFactory
+RailDefectFactory <|-- WebCrackFactory
+RailDefectFactory <|-- FootCorrosionFactory
+RailDefectFactory <|-- GaugeWideningFactory
+
+HeadCrackFactory ..> HeadCrackDefect : <<create>>
+WebCrackFactory ..> WebCrackDefect : <<create>>
+FootCorrosionFactory ..> FootCorrosionDefect : <<create>>
+GaugeWideningFactory ..> GaugeWideningDefect : <<create>>
+
+FactoryAfter o--> RailDefectFactory : использует
+FactoryAfter ..> RailDefect : получает
+
+note right of GaugeWideningDefect
+  Четвёртый тип добавлен новыми классами,
+  прежние классы не изменялись
+end note
+@enduml
