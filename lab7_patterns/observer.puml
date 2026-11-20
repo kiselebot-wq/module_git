@@ -1,0 +1,63 @@
+@startuml
+title Observer: событие «обнаружен дефект рельса» (вариант 11)
+
+interface DefectListener {
+  +onDefectFound(event) : void
+  +name() : String
+}
+
+class DefectEvent {
+  -sectionName : String
+  -defectCode : String
+  -kmMark : double
+  -severityLevel : int
+  +text() : String
+}
+
+class TrackSection {
+  -sectionName : String
+  -listeners : List<DefectListener>
+  -deliveryOrder : List<String>
+  +addListener(listener) : void
+  +removeListener(listener) : void
+  +defectDetected(defectCode, kmMark, severityLevel) : void
+  +deliveryOrder() : List<String>
+  +listenerCount() : int
+}
+
+class RepairServiceListener {
+  -receivedCount : int
+  -lastEvent : DefectEvent
+}
+class DispatcherListener {
+  -receivedCount : int
+  -lastEvent : DefectEvent
+}
+class DefectLogListener {
+  -messages : List<String>
+}
+class AsuTransmissionListener {
+  -receivedCount : int
+  -lastEvent : DefectEvent
+}
+
+class ObserverAfter {
+  +main(args) : void
+}
+
+DefectListener <|.. RepairServiceListener
+DefectListener <|.. DispatcherListener
+DefectListener <|.. DefectLogListener
+DefectListener <|.. AsuTransmissionListener
+
+TrackSection o--> DefectListener : уведомляет
+TrackSection ..> DefectEvent : создаёт
+DefectListener ..> DefectEvent : получает
+ObserverAfter o--> TrackSection : подписывает / отписывает
+ObserverAfter ..> DefectListener : использует
+
+note right of AsuTransmissionListener
+  Четвёртый наблюдатель подключён
+  без изменения TrackSection
+end note
+@enduml

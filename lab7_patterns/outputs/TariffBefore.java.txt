@@ -1,0 +1,5 @@
+повагонная   :     510,00
+контейнерная :     508,00
+маршрутная   :   10500,00
+рефрижератор :       0,00
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8
