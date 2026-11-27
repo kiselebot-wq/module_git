@@ -10,7 +10,6 @@
 - Исправлен код в `ShiftPlanFixed.java`: устранены все `blocker` и `major`, добавлены 12 самопроверок с `[OK]` / `[FAIL]` и `AssertionError`; characterizes-тест сохраняет прежний состав наряда на корректных данных.
 - Заполнена таблица прослеживаемости «замечание → изменение» (в ноутбуке), отвечены контрольные вопросы и сформулированы выводы.
 - Подготовлены 6 привязанных к строкам замечаний к PR [@Enormaly #76](https://github.com/vgkozlov/stations-gi41/pull/76) и шаблоны ответов на ревью своего PR [#84](https://github.com/vgkozlov/stations-gi41/pull/84) — в `github_review_drafts.md`.
-- Открыт PR в `kiselebot-wq/module_git`; у @Enormaly запрошено построчное ревью и финальное `Approve`.
 
 ### Проверка
 
